@@ -71,12 +71,31 @@ function GenerateBallQuads(atlas)
     return quads
 end
 
-function table.slice(tbl, first, last, step)
-    local sliced = {}
-  
-    for i = first or 1, last or #tbl, step or 1 do
-      sliced[#sliced+1] = tbl[i]
+function GenerateBrickQuads(atlas)
+    x = 0
+    y = 0
+
+    local counter = 1
+    local quads = {}
+
+    for i = 0, 2 do
+        x = 0
+        for i =0, 5 do
+            quads[counter] = love.graphics.newQuad(x, y, 32, 16, atlas:getDimensions())
+            counter = counter + 1
+            x = x + 32
+        end
+        y = y + 16
     end
-  
-    return sliced
+
+    x = 0
+    y = 48
+
+    for i = 0, 2 do
+        quads[counter] = love.graphics.newQuad(x, y, 32, 16, atlas:getDimensions())
+        counter = counter + 1
+        x = x + 32
+    end
+
+    return quads
 end
