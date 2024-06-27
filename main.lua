@@ -48,6 +48,7 @@ function love.load()
     gFrames = {
         ['paddles'] = GeneratePaddleQuads(gTextures['breakout']),
         ['balls'] = GenerateBallQuads(gTextures['breakout']),
+        ['bricks'] = GenerateBrickQuads(gTextures['breakout']),
     }
 
     love.graphics.setFont(gFonts['small'])
