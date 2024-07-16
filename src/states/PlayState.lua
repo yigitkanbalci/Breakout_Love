@@ -94,6 +94,10 @@ function PlayState:update(dt)
             })
         end
     end
+
+    for k, brick in pairs(self.bricks) do
+        brick:update(dt)
+    end
 end
 
 function PlayState:render()
@@ -101,6 +105,10 @@ function PlayState:render()
         brick:render()
     end
 
+    for k, brick in pairs(self.bricks) do
+        brick:renderParticles()
+    end
+    
     self.paddle:render()
     self.ball:render()
 
