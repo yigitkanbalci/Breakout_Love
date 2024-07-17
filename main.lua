@@ -66,8 +66,12 @@ function love.load()
         ['serve'] = function() return ServeState() end,
         ['game-over'] = function() return GameOverState() end,
         ['victory'] = function() return VictoryState() end,
+        ['high-scores'] = function() return HighScoresState() end,
+    
     }
-    gStateMachine:change('start')
+    gStateMachine:change('start', {
+        highScores = loadHighScores()
+    })
 
     love.keyboard.keysPressed = {}
 end
@@ -108,6 +112,51 @@ function love.draw()
     push:finish()
 end
 
+function loadHighScores()
+    love.filesystem.setIdentity('breakout')
+
+if not love.filesystem.getInfo('breakout.lst') then
+    local scores_str = ''
+    for i = 10, 1, -1 do
+        scores_str = scores_str .. 'CTO\n'
+        scores_str = scores_str .. tostring(i * 1000) .. '\n'
+    end
+
+    love.filesystem.write('breakout.lst', scores_str)
+end
+
+local name = true
+local currentName = nil
+local counter = 1
+
+local scores = {}
+
+for i = 1, 10 do
+    scores[i] = {
+        name = nil,
+        score = nil,
+    }
+end
+
+for line in love.filesystem.lines('breakout.lst') do
+    if name then
+        scores[counter].name = string.sub(line, 1, 3)
+    else
+        scores[counter].score = tonumber(line)
+        counter = counter + 1
+    end
+
+    name = not name
+
+    -- Ensure counter doesn't exceed the bounds of the scores array
+    if counter > #scores then
+        break
+    end
+end
+
+return scores
+end
+
 function displayFPS()
     love.graphics.setFont(gFonts['small'])
     love.graphics.setColor(0, 1, 0, 1)
@@ -133,4 +182,3 @@ function renderHealth(health)
     healthX = healthX + 10
     end
 end
-
