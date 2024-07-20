@@ -16,7 +16,7 @@ function StartState:update(dt)
         gSounds['confirm']:play()
 
         if highlighted == 1 then
-            gStateMachine:change('serve', {
+            gStateMachine:change('paddle-select', {
                 paddle = Paddle(1, 2),
                 ball = Ball(math.random(1,7)),
                 bricks = LevelMaker.createMap(1),

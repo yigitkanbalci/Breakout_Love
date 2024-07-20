@@ -49,7 +49,8 @@ function love.load()
         ['paddles'] = GeneratePaddleQuads(gTextures['breakout']),
         ['balls'] = GenerateBallQuads(gTextures['breakout']),
         ['bricks'] = GenerateBrickQuads(gTextures['breakout']),
-        ['hearts'] = GenerateQuads(gTextures['hearts'], 10, 9)
+        ['hearts'] = GenerateQuads(gTextures['hearts'], 10, 9),
+        ['arrows'] = GenerateQuads(gTextures['arrows'], 24, 24)
     }
 
     love.graphics.setFont(gFonts['small'])
@@ -60,6 +61,8 @@ function love.load()
         resizable = true,
     })
 
+    print(table.getn(gFrames['paddles']))
+
     gStateMachine = StateMachine {
         ['start'] = function() return StartState() end,
         ['play'] = function() return PlayState() end,
@@ -68,6 +71,7 @@ function love.load()
         ['victory'] = function() return VictoryState() end,
         ['high-scores'] = function() return HighScoresState() end,
         ['enter-high-score'] = function() return EnterHighScoreState() end,
+        ['paddle-select'] = function() return PaddleSelectState() end,
     
     }
     gStateMachine:change('start', {
