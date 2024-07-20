@@ -6,6 +6,7 @@ function PlayState:enter(params)
     self.health = params.health
     self.score = params.score
     self.level = params.level
+    self.highScores = params.highScores
 
     self.ball.dx = math.random(-200, 200)
     self.ball.dy = math.random(-50, -60)
@@ -44,9 +45,9 @@ function PlayState:update(dt)
         self.ball.dy = -self.ball.dy
 
         if self.ball.x < self.paddle.x + (self.paddle.width / 2) and self.paddle.dx < 0 then
-            self.ball.dx = -(8 * (self.paddle.x + self.paddle.width / 2 - self.ball.x))
+            self.ball.dx = -50 + -(8 * (self.paddle.x + self.paddle.width / 2 - self.ball.x))
         elseif self.ball.x > self.paddle.x + (self.paddle.width / 2) and self.paddle.dx > 0 then
-            self.ball.dx = (8 * math.abs(self.paddle.x + self.paddle.width / 2 - self.ball.x))
+            self.ball.dx = 50 + (8 * math.abs(self.paddle.x + self.paddle.width / 2 - self.ball.x))
         end
 
         gSounds['paddle-hit']:play()
@@ -63,7 +64,8 @@ function PlayState:update(dt)
                     paddle = self.paddle,
                     health = self.health,
                     score = self.score,
-                    ball = self.ball
+                    ball = self.ball,
+                    highScores = self.highScores
                 })
             end
 
@@ -95,7 +97,8 @@ function PlayState:update(dt)
 
         if self.health == 0 then
             gStateMachine:change('game-over', {
-                score = self.score
+                score = self.score,
+                highScores = self.highScores
             })
         else
             gStateMachine:change('serve', {
@@ -103,7 +106,9 @@ function PlayState:update(dt)
                 bricks = self.bricks,
                 ball = self.ball,
                 score = self.score,
-                health = self.health
+                health = self.health,
+                level = self.level,
+                highScores = self.highScores
             })
         end
     end
