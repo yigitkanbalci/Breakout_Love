@@ -53,6 +53,8 @@ function love.load()
         ['arrows'] = GenerateQuads(gTextures['arrows'], 24, 24)
     }
 
+    print(table.getn(gFrames['bricks']))
+
     love.graphics.setFont(gFonts['small'])
 
     push:setupScreen(VIRTUAL_WIDTH, VIRTUAL_HEIGHT, WINDOW_WIDTH, WINDOW_HEIGHT, {
@@ -60,8 +62,6 @@ function love.load()
         vsync = true,
         resizable = true,
     })
-
-    print(table.getn(gFrames['paddles']))
 
     gStateMachine = StateMachine {
         ['start'] = function() return StartState() end,

@@ -17,12 +17,6 @@ function StartState:update(dt)
 
         if highlighted == 1 then
             gStateMachine:change('paddle-select', {
-                paddle = Paddle(1, 2),
-                ball = Ball(math.random(1,7)),
-                bricks = LevelMaker.createMap(1),
-                health = 3,
-                score = 0,
-                level = 1,
                 highScores = self.highScores
             })
         else

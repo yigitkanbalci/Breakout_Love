@@ -94,9 +94,12 @@ end
 
 function Brick:render()
     if self.inPlay then
+        print(1 + ((self.color - 1) * 4) + self.tier)
+
         love.graphics.draw(gTextures['breakout'], gFrames['bricks'][1 + ((self.color - 1) * 4) + self.tier], self.x, self.y)
     end
 end
+
 
 function Brick:renderParticles()
     love.graphics.draw(self.psystem, self.x + 16, self.y + 8)
