@@ -31,6 +31,5 @@ function Paddle:update(dt)
 end
 
 function Paddle:render()
-    print(self.size)
     love.graphics.draw(gTextures['breakout'], gFrames['paddles'][((self.currentPaddle - 1) % 4) * 4 + (math.floor((self.currentPaddle - 1) / 4)) + 1], self.x, self.y)
 end

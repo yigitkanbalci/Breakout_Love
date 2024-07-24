@@ -53,8 +53,6 @@ function love.load()
         ['arrows'] = GenerateQuads(gTextures['arrows'], 24, 24)
     }
 
-    print(table.getn(gFrames['bricks']))
-
     love.graphics.setFont(gFonts['small'])
 
     push:setupScreen(VIRTUAL_WIDTH, VIRTUAL_HEIGHT, WINDOW_WIDTH, WINDOW_HEIGHT, {
