@@ -46,6 +46,23 @@ function GeneratePaddleQuads(atlas)
     return quads
 end
 
+function GenerateBoosterQuads(atlas)
+    x = 0
+    y = 192
+
+    local counter = 1
+    local quads = {}
+
+    for i = 0, 9 do
+        quads[counter] = love.graphics.newQuad(x, y, 16, 16, atlas:getDimensions())
+        counter = counter + 1
+        x = x + 16
+    end
+
+    return quads
+
+end
+
 function GenerateBallQuads(atlas)
     x = 96
     y = 48

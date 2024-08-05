@@ -10,6 +10,7 @@ require 'src/Paddle'
 require 'src/Ball'
 require 'src/Brick'
 require 'src/LevelMaker'
+require 'src/Booster'
 
 -- Import States
 require 'src/states/BaseState'

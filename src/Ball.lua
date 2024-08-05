@@ -8,6 +8,8 @@ function Ball:init(skin)
     self.dy = 0
 
     self.skin = skin
+
+    self.boosted = false
 end
 
 function Ball:update(dt)

@@ -50,7 +50,8 @@ function love.load()
         ['balls'] = GenerateBallQuads(gTextures['breakout']),
         ['bricks'] = GenerateBrickQuads(gTextures['breakout']),
         ['hearts'] = GenerateQuads(gTextures['hearts'], 10, 9),
-        ['arrows'] = GenerateQuads(gTextures['arrows'], 24, 24)
+        ['arrows'] = GenerateQuads(gTextures['arrows'], 24, 24),
+        ['boosters'] = GenerateBoosterQuads(gTextures['breakout'])
     }
 
     love.graphics.setFont(gFonts['small'])
