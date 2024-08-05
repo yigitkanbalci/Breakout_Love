@@ -23,7 +23,7 @@ function VictoryState:update(dt)
             health = self.health,
             score = self.score,
             ball = self.ball,
-            highScors = self.highScores
+            highScores = self.highScores
         })
     end
 end
