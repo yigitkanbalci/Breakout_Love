@@ -1,6 +1,6 @@
 Booster = Class{}
 
-function Booster:init()
+function Booster:init(skin)
     self.x = math.random(0, VIRTUAL_WIDTH)
     self.y = 0
     
@@ -8,6 +8,8 @@ function Booster:init()
 
     self.width = 16
     self.height = 16
+
+    self.skin = skin
 
     self.inPlay = true
 end
@@ -35,6 +37,6 @@ end
 
 function Booster:render()
     if self.inPlay then
-        love.graphics.draw(gTextures['breakout'], gFrames['boosters'][7], self.x, self.y)
+        love.graphics.draw(gTextures['breakout'], gFrames['boosters'][self.skin], self.x, self.y)
     end
 end
